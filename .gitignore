@@ -1,15 +1,18 @@
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/Assets/AssetStoreTools*
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+Assets/AssetStoreTools*
+
+com.unity.ads
+
 
 # Visual Studio 2015 cache directory
-/.vs/
+.vs/
 
 # Rider
-/.idea/
+.idea/
 
 UnityPackageManager
 
