@@ -41,6 +41,9 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+# Log files
+*.log
+
 # video files
-*.mp4
-*.mp4.meta
+# *.mp4
+# *.mp4.meta
