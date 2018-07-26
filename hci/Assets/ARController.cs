@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Experimental.UIElements;
 using UnityEngine.Video;
 
 public class ARController : MonoBehaviour
@@ -18,6 +19,9 @@ public class ARController : MonoBehaviour
     public AudioSource audioSourceDinoDokuSound;
     public AudioClip audioDinoDokuSound;
 
+    [SerializeField]
+    public Button stopButton;
+
 	VideoPlayer video;
 	GameObject curActive;
 	bool uiState;
@@ -28,6 +32,7 @@ public class ARController : MonoBehaviour
 	{
 		video = GetComponent<VideoPlayer>();
 		UI_Dummy.SetActive(uiState);
+        stopButton = GetComponent<Button>();
 	}
 	
 	void Update ()
