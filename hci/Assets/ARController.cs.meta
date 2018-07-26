@@ -3,7 +3,15 @@ guid: 188b07421b85dc74ea6f1bc61c79f2e4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - VR_1: {instanceID: 0}
+  - VR_2: {instanceID: 0}
+  - VR_3: {instanceID: 0}
+  - VR_4: {instanceID: 0}
+  - UI_Dummy: {instanceID: 0}
+  - audioSourceDinoDokuSound: {instanceID: 0}
+  - audioDinoDokuSound: {fileID: 8300000, guid: 6fbd8bb8ca96c8447b9acb0c88ca9921,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

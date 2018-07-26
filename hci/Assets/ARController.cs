@@ -14,7 +14,10 @@ public class ARController : MonoBehaviour
 	public long VR_2_frame = 200;
 	public long VR_3_frame = 380;
 	public long VR_4_frame = 420;
-	
+
+    public AudioSource audioSourceDinoDokuSound;
+    public AudioClip audioDinoDokuSound;
+
 	VideoPlayer video;
 	GameObject curActive;
 	bool uiState;
@@ -42,8 +45,12 @@ public class ARController : MonoBehaviour
 
 	void ShowArImage()
 	{
-		if (Input.GetKeyDown(KeyCode.X) && showAr)
-			curActive.SetActive(arState = !arState);
+        if (Input.GetKeyDown(KeyCode.X) && showAr)
+        {
+            curActive.SetActive(arState = !arState);
+            audioSourceDinoDokuSound.mute = false;
+            audioSourceDinoDokuSound.Play();
+        }
 	}
 
 	void WaitForArPop(long frame, GameObject activate)
