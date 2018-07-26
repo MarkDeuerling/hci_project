@@ -52,7 +52,11 @@ public class ARController : MonoBehaviour
 		{
 			curActive.SetActive(arState = !arState);
 			if (curUiActive != null)
+			{
 				curUiActive.SetActive(arState);
+				var img = AR_1_UI.GetComponentsInChildren<Image>();
+				img[1].fillAmount = 0;
+			}
 		}
 	}
 
@@ -119,8 +123,7 @@ public class ARController : MonoBehaviour
 			yield return new WaitForSeconds(dt / LoadSpeed);
 		}
 
-		var sound = AR_1_UI.GetComponentInChildren<AudioSource>();
-		sound.Play();
+		AR_1_UI.GetComponentInChildren<AudioSource>().Play();
 	}
 
 	public void OnStartVideo()
