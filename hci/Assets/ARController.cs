@@ -18,7 +18,8 @@ public class ARController : MonoBehaviour
 	VideoPlayer video;
 	GameObject curActive;
 	bool uiState;
-	bool arSate;
+	bool arState;
+	bool showAr;
 	
 	void Start ()
 	{
@@ -41,8 +42,8 @@ public class ARController : MonoBehaviour
 
 	void ShowArImage()
 	{
-		if (Input.GetKeyDown(KeyCode.X))
-			curActive.SetActive(arSate = !arSate);
+		if (Input.GetKeyDown(KeyCode.X) && showAr)
+			curActive.SetActive(arState = !arState);
 	}
 
 	void WaitForArPop(long frame, GameObject activate)
@@ -51,15 +52,14 @@ public class ARController : MonoBehaviour
 		{
 			video.playbackSpeed = 0;
 			curActive = activate;
+			showAr = true;
 		}
 	}
 
 	void ShowHud()
 	{
 		if (Input.GetKeyDown(KeyCode.Y))
-		{
 			UI_Dummy.SetActive(uiState = !uiState);	
-		}
 	}
 
 	void Continue()
@@ -69,6 +69,7 @@ public class ARController : MonoBehaviour
 			video.frame += 1;
 			video.playbackSpeed = 1;
 			curActive.SetActive(false);
+			showAr = false;
 		}
 	}
 
@@ -76,9 +77,25 @@ public class ARController : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.S))
 		{
+			VR_1.SetActive(false);
+			VR_2.SetActive(false);
+			VR_3.SetActive(false);
+			VR_4.SetActive(false);
 			video.Stop();
 			video.playbackSpeed = 1;
 			video.Play();
 		}
 	}
+
+	public void OnStartVideo()
+	{
+		
+	}
+
+	public void OnExitVideo()
+	{
+		
+	}
+	
+	
 }
