@@ -8,40 +8,57 @@ public class ARController : MonoBehaviour
 	public GameObject VR_2;
 	public GameObject VR_3;
 	public GameObject VR_4;
+	public GameObject UI_Dummy;
 
 	public long VR_1_frame = 73;
 	public long VR_2_frame = 200;
 	public long VR_3_frame = 380;
 	public long VR_4_frame = 420;
 	
-	VideoPlayer vp;
+	VideoPlayer video;
 	GameObject curActive;
+	bool uiState;
+	bool arSate;
 	
 	void Start ()
 	{
-		vp = GetComponent<VideoPlayer>();
+		video = GetComponent<VideoPlayer>();
+		UI_Dummy.SetActive(uiState);
 	}
 	
 	void Update ()
 	{
-		print(vp.frame);
+		print(video.frame);
 		Restart();
 		Continue();
-		Stop();
-		Play();
-		ShowVRImage(VR_1_frame, VR_1);
-		ShowVRImage(VR_2_frame, VR_2);
-		ShowVRImage(VR_3_frame, VR_3);
-		ShowVRImage(VR_4_frame, VR_4);
+		WaitForArPop(VR_1_frame, VR_1);
+		WaitForArPop(VR_2_frame, VR_2);
+		WaitForArPop(VR_3_frame, VR_3);
+		WaitForArPop(VR_4_frame, VR_4);
+		ShowArImage();
+		ShowHud();
 	}
 
-	void ShowVRImage(long frame, GameObject activate)
+	void ShowArImage()
 	{
-		if (vp.frame == frame)
+		if (Input.GetKeyDown(KeyCode.X))
+			curActive.SetActive(arSate = !arSate);
+	}
+
+	void WaitForArPop(long frame, GameObject activate)
+	{
+		if (video.frame == frame)
 		{
-			vp.playbackSpeed = 0;
-			activate.SetActive(true);
+			video.playbackSpeed = 0;
 			curActive = activate;
+		}
+	}
+
+	void ShowHud()
+	{
+		if (Input.GetKeyDown(KeyCode.Y))
+		{
+			UI_Dummy.SetActive(uiState = !uiState);	
 		}
 	}
 
@@ -49,8 +66,8 @@ public class ARController : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.A))
 		{
-			vp.frame += 1;
-			vp.playbackSpeed = 1;
+			video.frame += 1;
+			video.playbackSpeed = 1;
 			curActive.SetActive(false);
 		}
 	}
@@ -59,20 +76,9 @@ public class ARController : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.S))
 		{
-			vp.Stop();
-			vp.Play();
+			video.Stop();
+			video.playbackSpeed = 1;
+			video.Play();
 		}
-	}
-
-	void Stop()
-	{
-		if (Input.GetKeyDown(KeyCode.D) && vp.playbackSpeed >= 1)
-			vp.playbackSpeed = 0;
-	}
-
-	void Play()
-	{
-		if (Input.GetKeyDown(KeyCode.D) && vp.playbackSpeed <= 0)
-			vp.playbackSpeed = 1;
 	}
 }
